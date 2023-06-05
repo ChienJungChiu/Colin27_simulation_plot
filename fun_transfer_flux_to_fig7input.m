@@ -3,7 +3,7 @@ function [to_plot_layer_eng] = fun_transfer_flux_to_fig7input(average_fluence,mo
 %{
 turn the simulation result (average fluence rate) into the input of fig.7
 %Chien-Jung Chiu
-%Last update: 2023/2/13 
+%Last update: 2023/6/5
 
 %}
 chk = model_size;
@@ -56,6 +56,6 @@ for x = 1:model_size(1)
     end
 end
 %test = unique(to_plot_layer_eng);
-
+disp('Transfer successfully!!!')
 end
 

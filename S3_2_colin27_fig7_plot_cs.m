@@ -5,7 +5,7 @@ input:.mat file that turn into the new label which depends on fluence rate
 output:save 4 different sources cross section picture
 
 Edited by Chien-Jung Chiu
-Last Update: 2023/05/30
+Last Update: 2023/06/05
 %}
 
 %%
@@ -42,20 +42,25 @@ colorTickLabel = load('colorTickLabel.mat').colorTickLabel;
 for k = 1:model_size(3)
     plot_Cone1_810_cs = reshape(plot_Cone1_810(:,:,k),model_size(1),model_size(2));
     imagesc(plot_Cone1_810_cs);
-    
     colormap(colormap_arr);
     caxis([0 num_color_scale+6]);
     hcb=colorbar('Ticks',colorTick,'TickLabels',colorTickLabel);
     text(model_size(2)/2,model_size(1)-10,'810 Cone1 fluence rate','HorizontalAlignment','center','VerticalAlignment','middle', 'FontName', 'Times New Roman')
     %axis off;
-%     axis square;
+    %axis square;
     axis image;
     xticks([0 20 40 60 80 100 120 140 160 180]);
-    %xticklabels(xticks*voxel_size);
-    set(gca,'fontsize',8, 'FontName', 'Times New Roman');%,'xticklabels', xticklabels(xticks*voxel_size));
+    yticks([0 20 40 60 80 100 120 140 160 180 200 220 240]);
+    set(gca,'fontsize',8, 'FontName', 'Times New Roman');
     set(gca,'YDir','normal')
+    if strcmp(subject_name_arr,'colin27') == 0
+        set(gca,'xticklabel',{'0','18','36','54','72','90','108','126','144','162'})
+        set(gca,'yticklabel',{'0','18','36','54','72','90','108','126','144','162','180','198','216'})
+    end
     saveas(gcf,fullfile(fluence_dir_1,subject_name_arr,fluence_subDir,output_folder,output_subfolder_1,[ 'z' num2str(k) '_Cone1_810_cross section']),'jpeg');
 end
+disp('Cone1 810nm Done!');
+
 
 %% Cone1 1064
 for b = 1:model_size(3)
@@ -69,10 +74,16 @@ for b = 1:model_size(3)
     %axis square;
     axis image;
     xticks([0 20 40 60 80 100 120 140 160 180]);
+    yticks([0 20 40 60 80 100 120 140 160 180 200 220 240]);
     set(gca,'fontsize',8, 'FontName', 'Times New Roman');
     set(gca,'YDir','normal')
+    if strcmp(subject_name_arr,'colin27') == 0
+        set(gca,'xticklabel',{'0','18','36','54','72','90','108','126','144','162'})
+        set(gca,'yticklabel',{'0','18','36','54','72','90','108','126','144','162','180','198','216'})
+    end
     saveas(gcf,fullfile(fluence_dir_1,subject_name_arr,fluence_subDir,output_folder,output_subfolder_2,[ 'z' num2str(b) '_Cone1_1064_cross section']),'jpeg');
 end
+disp('Cone1 1064nm Done!');
 
 
 %% Disk1 810
@@ -87,10 +98,16 @@ for a = 1:model_size(3)
     %axis square;
     axis image;
     xticks([0 20 40 60 80 100 120 140 160 180]);
+    yticks([0 20 40 60 80 100 120 140 160 180 200 220 240]);
     set(gca,'fontsize',8, 'FontName', 'Times New Roman');
     set(gca,'YDir','normal')
+    if strcmp(subject_name_arr,'colin27') == 0
+        set(gca,'xticklabel',{'0','18','36','54','72','90','108','126','144','162'})
+        set(gca,'yticklabel',{'0','18','36','54','72','90','108','126','144','162','180','198','216'})
+    end
     saveas(gcf,fullfile(fluence_dir_2,subject_name_arr,fluence_subDir,output_folder,output_subfolder_1,[ 'z' num2str(a) '_Disk1_810_cross section']),'jpeg');
 end
+disp('Disk1 810nm Done!');
 
 
 %% Disk1 1064
@@ -105,9 +122,14 @@ for c = 1:model_size(3)
     %axis square;
     axis image;
     xticks([0 20 40 60 80 100 120 140 160 180]);
+    yticks([0 20 40 60 80 100 120 140 160 180 200 220 240]);
     set(gca,'fontsize',8, 'FontName', 'Times New Roman');
     set(gca,'YDir','normal')
+    if strcmp(subject_name_arr,'colin27') == 0
+        set(gca,'xticklabel',{'0','18','36','54','72','90','108','126','144','162'})
+        set(gca,'yticklabel',{'0','18','36','54','72','90','108','126','144','162','180','198','216'})
+    end
     saveas(gcf,fullfile(fluence_dir_2,subject_name_arr,fluence_subDir,output_folder,output_subfolder_2,[ 'z' num2str(c) '_Disk1_1064_cross section']),'jpeg');
 end
-
+disp('Disk1 1064nm Done!');
 

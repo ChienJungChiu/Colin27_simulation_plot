@@ -5,7 +5,7 @@ input:fluence rate(W/cm)
 output:the .mat file that turn into the new label which depends on fluence rate
 
 Edited by Chien-Jung Chiu
-Last Update: 2023/05/30
+Last Update: 2023/06/05
 %}
 
 clc;clear;close all;
@@ -69,69 +69,4 @@ save(fullfile(fluence_dir_1,subject_name_arr, fluence_subDir,output_folder,outpu
 save(fullfile(fluence_dir_1,subject_name_arr, fluence_subDir,output_folder,output_subfolder_2,'plot_Cone1_1064.mat'),'plot_Cone1_1064');
 save(fullfile(fluence_dir_2,subject_name_arr, fluence_subDir,output_folder,output_subfolder_1,'plot_Disk1_810.mat'),'plot_Disk1_810');
 save(fullfile(fluence_dir_2,subject_name_arr, fluence_subDir,output_folder,output_subfolder_2,'plot_Disk1_1064.mat'),'plot_Disk1_1064');
-
-%% start plotting
-for k = 1:model_size(3)
-    plot_Cone1_810_cs = reshape(plot_Cone1_810(:,:,k),model_size(1),model_size(2));
-    imagesc(plot_Cone1_810_cs);
-    
-    colormap(colormap_arr);
-    caxis([0 num_color_scale+6]);
-    hcb=colorbar('Ticks',colorTick,'TickLabels',colorTickLabel);
-    text(model_size(2)/2,model_size(1)-10,'810 Cone1 fluence rate','HorizontalAlignment','center','VerticalAlignment','middle', 'FontName', 'Times New Roman')
-    %axis off;
-%     axis square;
-    axis image;
-    xticks([0 20 40 60 80 100 120 140 160 180]);
-    %xticklabels(xticks*voxel_size);
-    set(gca,'fontsize',8, 'FontName', 'Times New Roman');%,'xticklabels', xticklabels(xticks*voxel_size));
-    set(gca,'YDir','normal')
-    saveas(gcf,fullfile(fluence_dir_1,subject_name_arr,fluence_subDir,output_folder,output_subfolder_1,[ 'z' num2str(k) '_Cone1_810_cross section']),'jpeg');
-end
-
-for b = 1:model_size(3)
-    plot_Cone1_1064_cs = reshape(plot_Cone1_1064(:,:,b),model_size(1),model_size(2));
-    imagesc(plot_Cone1_1064_cs);
-    colormap(colormap_arr);
-    caxis([0 num_color_scale+6]);
-    hcb=colorbar('Ticks',colorTick,'TickLabels',colorTickLabel);
-    text(model_size(2)/2,model_size(1)-10,'1064 Cone1 fluence rate','HorizontalAlignment','center','VerticalAlignment','middle', 'FontName', 'Times New Roman')
-    %axis off;
-    %axis square;
-    axis equal;
-    set(gca,'fontsize',8, 'FontName', 'Times New Roman');
-    set(gca,'YDir','normal')
-    saveas(gcf,fullfile(fluence_dir_1,subject_name_arr,fluence_subDir,output_folder,output_subfolder_2,[ 'z' num2str(b) '_Cone1_1064_cross section']),'jpeg');
-end
-
-for a = 1:model_size(3)
-    plot_Disk1_810_cs = reshape(plot_Disk1_810(:,:,a),model_size(1),model_size(2));
-    imagesc(plot_Disk1_810_cs);
-    colormap(colormap_arr);
-    caxis([0 num_color_scale+6]);
-    hcb=colorbar('Ticks',colorTick,'TickLabels',colorTickLabel);
-    text(model_size(2)/2,model_size(1)-10,'810 Disk1 fluence rate','HorizontalAlignment','center','VerticalAlignment','middle', 'FontName', 'Times New Roman')
-    %axis off;
-    %axis square;
-    axis equal;
-    set(gca,'fontsize',8, 'FontName', 'Times New Roman');
-    set(gca,'YDir','normal')
-    saveas(gcf,fullfile(fluence_dir_2,subject_name_arr,fluence_subDir,output_folder,output_subfolder_1,[ 'z' num2str(a) '_Disk1_810_cross section']),'jpeg');
-end
-
-for c = 1:model_size(3)
-    plot_Disk1_1064_cs = reshape(plot_Disk1_1064(:,:,c),model_size(1),model_size(2));
-    imagesc(plot_Disk1_1064_cs);
-    colormap(colormap_arr);
-    caxis([0 num_color_scale+6]);
-    hcb=colorbar('Ticks',colorTick,'TickLabels',colorTickLabel);
-    text(model_size(2)/2,model_size(1)-10,'1064 Disk1 fluence rate','HorizontalAlignment','center','VerticalAlignment','middle', 'FontName', 'Times New Roman')
-    %axis off;
-    %axis square;
-    axis equal;
-    set(gca,'fontsize',8, 'FontName', 'Times New Roman');
-    set(gca,'YDir','normal')
-    saveas(gcf,fullfile(fluence_dir_2,subject_name_arr,fluence_subDir,output_folder,output_subfolder_2,[ 'z' num2str(c) '_Disk1_1064_cross section']),'jpeg');
-end
-
 
